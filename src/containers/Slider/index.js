@@ -10,21 +10,25 @@ const Slider = () => {
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
+
   const nextCard = () => {
-    setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
-      5000
-    );
+    setTimeout(() => setIndex(index < byDateDesc.length ? index + 1 : 0), 5000);
   };
+
   useEffect(() => {
-    nextCard();
+    // Ajout verification pour voir si byDatadesc est valid Error Console
+
+    if (byDateDesc) {
+      nextCard();
+    }
   });
+
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
+        // Enlever les chevrons et remplacement par une div et remplacement Event.id => event.title et deplacement de la key
+        <div key={event.title}>
           <div
-            key={event.title}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -42,15 +46,17 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                  // Creation d'une key unique
+                  key={`${_.title}-id`}
                   type="radio"
                   name="radio-button"
                   checked={idx === radioIdx}
+                  readOnly
                 />
               ))}
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
