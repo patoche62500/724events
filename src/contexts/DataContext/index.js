@@ -19,6 +19,7 @@ export const api = {
 export const DataProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+  // ajout d'un usestate pour last
   const [last, setLast] = useState(null);
   const getData = useCallback(async () => {
     try {
@@ -31,6 +32,7 @@ export const DataProvider = ({ children }) => {
     if (data) {
       // console.log(data.events[data.events.length - 1]);
       if (data.events) {
+        // definition de last pour filtrer le derniere evenement
         setLast(data.events[data.events.length - 1]);
       }
 

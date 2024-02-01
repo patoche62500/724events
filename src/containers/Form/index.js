@@ -6,7 +6,8 @@ import Button, { BUTTON_TYPES } from "../../components/Button";
 
 const mockContactApi = () =>
   new Promise((resolve) => {
-    setTimeout(resolve, 1000);
+    // reduction du delay de timeout de 1000 à 500
+    setTimeout(resolve, 500);
   });
 
 const Form = ({ onSuccess, onError }) => {
@@ -19,6 +20,7 @@ const Form = ({ onSuccess, onError }) => {
       // We try to call mockContactApi
       try {
         await mockContactApi();
+        /* Ajout du onSucess pour permettre la popup de s'afficher */
         onSuccess();
         setSending(false);
       } catch (err) {
