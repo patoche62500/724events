@@ -13,6 +13,7 @@ const Slider = () => {
   );
 
   const nextCard = () => {
+    // Ajout d'un - 1 pour que le tableau commence 0
     setTimeout(
       () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
       5000
@@ -21,7 +22,6 @@ const Slider = () => {
 
   useEffect(() => {
     // Ajout verification pour voir si byDatadesc est valid Error Console
-
     if (byDateDesc) {
       nextCard();
     }
@@ -55,6 +55,7 @@ const Slider = () => {
                   type="radio"
                   name="radio-button"
                   checked={index === radioIdx}
+                  // ajout de read only pour enlever erreur console
                   readOnly
                 />
               ))}
